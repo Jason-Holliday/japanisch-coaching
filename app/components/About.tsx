@@ -69,18 +69,21 @@ export default function About() {
               Hallo, ich bin <span className="text-[#f04498]">Kenji Tanaka</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-white/90 sm:text-base">
-              Ich weiß, wie es ist, Japanisch neben dem Alltag zu lernen. Ich
-              habe selbst mit Lehrbüchern angefangen, Vokabeln gepaukt und
-              Grammatik Kapitel für Kapitel durchgearbeitet. Irgendwann habe ich
-              gemerkt, dass Wissen allein nicht reicht. Ich kannte viele Regeln,
-              aber in einem echten Gespräch fehlten mir trotzdem die Worte. Erst
-              mein Studium in Osaka hat mir gezeigt, wie Menschen dort wirklich
-              sprechen. Im Alltag, beim Einkaufen, unter Freunden und im Beruf
-              klingt Japanisch oft ganz anders als im Lehrbuch. Genau dort habe
-              ich gelernt, worauf es beim Sprechen wirklich ankommt. Dieses
-              moderne, alltagstaugliche Japanisch gebe ich heute an Berufstätige
-              weiter. Mit einem klaren System, das in deinen Alltag passt, damit
-              du nicht nur Japanisch lernst, sondern es endlich auch sprichst.
+              Ich bin als Japaner in Deutschland aufgewachsen. Zu Hause
+              wurde zwar Japanisch gesprochen, aber im Alltag war Deutsch
+              meine Sprache. Ich habe vieles verstanden, doch wenn ich selbst
+              etwas sagen wollte, fehlten mir oft die Worte. Also habe ich
+              angefangen, mit Lehrbüchern zu lernen, Vokabeln zu pauken und
+              Grammatik Kapitel für Kapitel durchzuarbeiten. Irgendwann habe
+              ich gemerkt, dass Wissen allein nicht reicht. Erst als ich nach
+              Japan gezogen bin und in Osaka Japanisch studiert habe, hat sich
+              das geändert. Dort habe ich erlebt, wie Menschen wirklich
+              sprechen: im Alltag, beim Einkaufen, unter Freunden und im Beruf.
+              Genau dieses moderne, alltagstaugliche Japanisch gebe ich heute
+              an Berufstätige weiter. Weil ich beide Sprachen und beide
+              Kulturen kenne, erkläre ich dir alles verständlich auf Deutsch.
+              Mit einem klaren System, das in deinen Alltag passt, damit du
+              nicht nur Japanisch lernst, sondern es endlich auch sprichst.
             </p>
           </div>
 
