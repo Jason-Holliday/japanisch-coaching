@@ -12,22 +12,22 @@ const facts = [
   {
     icon: GraduationCap,
     title: "Studium in Osaka",
-    text: "Japanisch dort gelernt, wo es wirklich gesprochen wird.",
+    text: "Ich habe an der Universität in Osaka studiert und Japanisch dort im Hörsaal und im Alltag gelernt.",
   },
   {
     icon: MessagesSquare,
     title: "Alltagsjapanisch",
-    text: "Modernes Japanisch statt steifer Lehrbuchsätze.",
+    text: "Ich bringe dir modernes Japanisch bei, so wie es heute im Alltag wirklich gesprochen wird.",
   },
   {
     icon: Languages,
     title: "Erklärt auf Deutsch",
-    text: "Ohne Englisch als Umweg – direkt verständlich.",
+    text: "Bei mir lernst du alles auf Deutsch, ohne den Umweg über Englisch. So verstehst du jede Erklärung sofort.",
   },
   {
     icon: BriefcaseBusiness,
     title: "Für Berufstätige",
-    text: "Ein System, das neben deinem Job funktioniert.",
+    text: "Mein System passt sich deinem Job an, damit du auch mit wenig Zeit gut vorankommst.",
   },
 ];
 
