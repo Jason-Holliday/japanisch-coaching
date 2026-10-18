@@ -12,7 +12,7 @@ const facts = [
   {
     icon: GraduationCap,
     title: "Studium in Osaka",
-    text: "Ich habe an der Universität in Osaka studiert und Japanisch dort im Hörsaal und im Alltag gelernt.",
+    text: "Ich bin als Japaner in Deutschland aufgewachsen und später nach Japan gezogen. In Osaka habe ich dann Japanisch studiert.",
   },
   {
     icon: MessagesSquare,
