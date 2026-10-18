@@ -21,7 +21,7 @@ function NavigationLinks() {
 
 export default function Navigations() {
   return (
-    <header className="site-navigation sticky top-0 z-50 w-full bg-[#06101f] text-white">
+    <header className="site-navigation relative z-50 w-full bg-[#06101f] text-white">
       <div className="mx-auto flex min-h-19 max-w-360 items-center justify-between gap-4 px-4 sm:gap-8 sm:px-6 lg:px-14">
         <a
           aria-label="Kenji Tanaka, Startseite"
@@ -49,7 +49,7 @@ export default function Navigations() {
           </button>
         </nav>
 
-        <details className="mobile-menu-details group relative lg:hidden">
+        <details className="mobile-menu-details group lg:hidden">
           <summary
             aria-label="Menü"
             className="cursor-pointer list-none rounded-sm py-3 focus-visible:bg-[#c50045]"
@@ -69,7 +69,7 @@ export default function Navigations() {
           </summary>
           <nav
             aria-label="Mobile Navigation"
-            className="mobile-menu fixed inset-x-0 top-19 z-40 flex w-full flex-col gap-5 bg-[#06101f] p-6 shadow-xl"
+            className="mobile-menu absolute inset-x-0 top-full z-40 flex w-full flex-col gap-5 bg-[#06101f] p-6 shadow-xl"
           >
             <NavigationLinks />
             <button
