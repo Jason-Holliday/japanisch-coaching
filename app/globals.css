@@ -1,0 +1,463 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* "font-serif" wird für alle Überschriften genutzt. */
+  --font-serif: var(--font-reggae-one), ui-serif, Georgia, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  /* Keine automatische Silbentrennung. Nur Wörter, die sonst über den Rand
+     hinausragen würden (z. B. lange Begriffe auf schmalen Handys), werden
+     umbrochen. */
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
+/* Reggae One gibt es nur in einer Stärke. Ohne diese Regel würde der Browser
+   bei font-bold/font-black eine künstlich verdickte Version erzeugen. */
+.font-serif {
+  font-synthesis-weight: none;
+}
+
+/* Standard-Fokusrahmen für die Tastaturbedienung. Liegt in @layer base, damit
+   Tailwind-Klassen wie outline-none ihn überschreiben können.
+   Eingabefelder sind bewusst ausgenommen: Browser zeigen :focus-visible dort
+   auch beim Mausklick an. Felder haben stattdessen ihren eigenen pinken
+   Fokusrahmen (focus: bzw. focus-within: am Wrapper). */
+@layer base {
+  :where(a, button, summary):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+}
+
+.site-navigation :where(a, button, summary):focus-visible {
+  outline: none;
+}
+
+.site-footer :where(a, button):focus-visible {
+  outline: none;
+}
+
+.site-footer :where(a, button):focus-visible::after {
+  transform: scaleX(1);
+}
+
+.hero-sticky {
+  position: relative;
+}
+
+@media (min-width: 1024px) and (min-height: 800px) {
+  .hero-sticky {
+    position: sticky;
+    top: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.hero-heading-enter,
+.hero-description-enter,
+.hero-benefit-enter,
+.hero-cta-enter,
+.hero-art-enter,
+.hero-japanese-character {
+  animation: section-reveal-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-description-enter {
+  animation-delay: 100ms;
+}
+
+.hero-cta-enter {
+  animation-delay: 500ms;
+}
+
+.hero-art-enter {
+  animation-delay: 100ms;
+}
+
+.hero-japanese-character {
+  display: inline-block;
+}
+
+@keyframes section-reveal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal[data-reveal-state="hidden"] {
+  opacity: 0;
+}
+
+.scroll-reveal[data-reveal-state="visible"] {
+  animation: section-reveal-enter 650ms cubic-bezier(0.22, 1, 0.36, 1)
+    var(--reveal-delay, 0ms) both;
+}
+
+.scroll-reveal[data-reveal-state="focused"] {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+.cta-interactive {
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 120ms ease-out;
+}
+
+.cta-interactive:focus-visible {
+  background-color: #06101f;
+  box-shadow: 0 0 0 2px #f04498;
+}
+
+.link-label-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.link-label-underline::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.125rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease;
+}
+
+.group:hover .link-label-underline::after,
+.group:focus-visible .link-label-underline::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-label-underline::after {
+    transition: none;
+  }
+}
+
+@media (hover: hover) {
+  .cta-interactive:hover {
+    background-color: #06101f;
+    box-shadow: 0 0 0 2px #f04498;
+  }
+}
+
+.cta-interactive:active {
+  background-color: #06101f;
+  box-shadow: 0 0 0 2px #f04498;
+  transform: scale(0.97);
+}
+
+/* Button-Variante für dunkle Hintergründe: helles Pink mit dunkler Schrift.
+   Kontrast Schrift 5,55:1 und Button zum Hintergrund 5,55:1 (WCAG AA).
+   Weiße Schrift auf #f04498 hätte nur 3,51:1 und wäre nicht barrierefrei.
+   Hover/Fokus/Aktiv: dunkler Hintergrund aus .cta-interactive, daher weiße Schrift. */
+.cta-on-dark {
+  background-color: #f04498;
+  color: #030d1d;
+}
+
+.cta-on-dark:focus-visible,
+.cta-on-dark:active {
+  color: #fff;
+}
+
+@media (hover: hover) {
+  .cta-on-dark:hover {
+    color: #fff;
+  }
+}
+
+/* Langsame Drehung der Kirschblüte im Hero. Nutzt die eigene CSS-Eigenschaft
+   "rotate", damit Tailwinds translate/scale am selben Element erhalten bleiben. */
+.hero-blossom-spin {
+  animation: hero-blossom-spin 60s linear infinite;
+}
+
+@keyframes hero-blossom-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-blossom-spin {
+    animation: none;
+  }
+}
+
+/* Puls-Ring für die "Jetzt bewerben"-Buttons (nicht in der Navigation).
+   Der Ring liegt auf einem Pseudo-Element, damit er nicht mit dem box-shadow
+   von Hover/Fokus kollidiert. Farbe über --pulse-color, auf dunklem
+   Hintergrund das helle Pink. */
+.cta-pulse {
+  --pulse-color: 176 0 69;
+  position: relative;
+}
+
+.cta-pulse.cta-on-dark {
+  --pulse-color: 240 68 152;
+}
+
+.cta-pulse::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+  animation: cta-pulse 1.6s ease-out 1.2s infinite;
+}
+
+.cta-pulse:hover::before,
+.cta-pulse:focus-visible::before {
+  animation: none;
+}
+
+@keyframes cta-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(var(--pulse-color) / 55%);
+  }
+
+  70%,
+  100% {
+    box-shadow: 0 0 0 16px rgb(var(--pulse-color) / 0%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-pulse::before {
+    animation: none;
+  }
+}
+
+/* Nach dem Schließen eines Dialogs per Maus bekommt der auslösende Button den
+   Fokus zurück, soll aber keinen Fokusring zeigen (siehe ModalDialog.tsx). */
+[data-pointer-focus]:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.cta-interactive[data-pointer-focus]:focus-visible {
+  /* zurück auf die Tailwind-Hintergrundfarbe des Buttons */
+  background-color: revert-layer;
+}
+
+.cta-on-dark[data-pointer-focus]:focus-visible {
+  background-color: #f04498;
+  color: #030d1d;
+}
+
+.form-back-button:focus-visible {
+  background-color: rgb(255 255 255 / 10%);
+}
+
+.hero-petals {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  perspective: 500px;
+  pointer-events: none;
+}
+
+.hero-petals span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100% 0 100% 0;
+  background: linear-gradient(135deg, rgb(176 0 69 / 28%), rgb(240 68 152 / 14%));
+  opacity: 0.7;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.hero-petals span:nth-child(3n + 1) {
+  border-radius: 0 100% 0 100%;
+}
+
+.hero-petals span:nth-child(3n + 2) {
+  border-radius: 100% 0 100% 0;
+  opacity: 0.55;
+}
+
+.hero-petals span:nth-child(3n) {
+  opacity: 0.8;
+}
+
+@keyframes mobile-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu-details[open] > .mobile-menu {
+  animation: mobile-menu-enter 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top center;
+  will-change: opacity, transform;
+}
+
+@keyframes bewerbung-step-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bewerbung-step-enter {
+  animation: bewerbung-step-enter 260ms ease-out both;
+}
+
+@keyframes bewerbung-step-check {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-25deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+.bewerbung-step-check {
+  animation: bewerbung-step-check 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes bewerbung-success-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bewerbung-success-icon {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  70% {
+    transform: scale(1.12);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.bewerbung-success-enter {
+  animation: bewerbung-success-enter 420ms ease-out both;
+}
+
+.bewerbung-success-icon {
+  animation: bewerbung-success-icon 520ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .mobile-menu-details[open] > .mobile-menu {
+    animation: none;
+  }
+
+  .cta-interactive {
+    transition: none;
+  }
+
+  .cta-interactive:active {
+    transform: none;
+  }
+
+  .hero-petals {
+    display: none;
+  }
+
+  .hero-heading-enter,
+  .hero-description-enter,
+  .hero-benefit-enter,
+  .hero-cta-enter,
+  .hero-art-enter,
+  .hero-japanese-character {
+    animation: none;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal[data-reveal-state="hidden"],
+  .scroll-reveal[data-reveal-state="visible"] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .scroll-reveal[data-reveal-state="focused"] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .bewerbung-step-enter {
+    animation: none;
+  }
+
+  .bewerbung-step-check {
+    animation: none;
+  }
+
+  .bewerbung-success-enter,
+  .bewerbung-success-icon {
+    animation: none;
+  }
+}
