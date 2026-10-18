@@ -58,8 +58,11 @@ export default function CookieBanner() {
     if (isSettingsOpen) titleRef.current?.focus();
   }, [isSettingsOpen]);
 
+  // Der Hinweis erscheint nicht automatisch beim Seitenaufruf, sondern nur
+  // über „Cookie-Einstellungen“ im Footer. Ohne Zustimmung wird kein Pixel
+  // geladen.
   if (consent === undefined) return null;
-  if (consent !== null && !isSettingsOpen) return null;
+  if (!isSettingsOpen) return null;
 
   function decide(status: ConsentStatus) {
     setConsent(status);
@@ -99,11 +102,9 @@ export default function CookieBanner() {
         </Link>
         .
       </p>
-      {consent !== null && (
-        <p className="mt-3 text-sm font-semibold">
-          Aktuell: {consent === "granted" ? "zugestimmt" : "abgelehnt"}
-        </p>
-      )}
+      <p className="mt-3 text-sm font-semibold">
+        Aktuell: {consent === "granted" ? "zugestimmt" : "nicht zugestimmt"}
+      </p>
       <div className="mt-4 flex gap-3">
         <button
           className={rejectButtonClassName}
