@@ -68,14 +68,12 @@ body {
 @media (min-width: 1024px) and (min-height: 800px) {
   .hero-sticky {
     position: sticky;
-    top: 4.75rem;
+    top: 0;
   }
 }
 
 html {
   scroll-behavior: smooth;
-  /* Sprungziele nicht unter der festen Navbar verstecken. */
-  scroll-padding-top: 4.75rem;
 }
 
 .hero-heading-enter,
